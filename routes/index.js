@@ -30,6 +30,7 @@ keystone.pre('routes', middleware.initLocals);
 keystone.pre('render', middleware.flashMessages);
 
 
+
 // Handle 404 errors
 keystone.set('404', function(req, res, next) {
     res.notfound();
@@ -50,20 +51,22 @@ var routes = {
 	views: importRoutes('./views')
 };
 
+
+
 // Setup Route Bindings
 exports = module.exports = function(app) {
+	console.log("EXPORTS!!")
 	
 	// Views
 	app.get('/', routes.views.index);
 	
 	// Routes
-	//app.get('/', routes.index);
-	app.get('/partials/:name', api.partials);
+	//app.get('/', api.index);
+	//app.get('/partials/*', routes.views.partial);
+	app.get('/partials/:name', routes.views.partials);
 
 	// JSON API
-
 	app.get('/api/posts', api.posts);
-
 	app.get('/api/post/:id', api.post);
 	app.post('/api/post', api.addPost);
 	app.put('/api/post/:id', api.editPost);

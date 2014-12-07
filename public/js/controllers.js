@@ -20,6 +20,7 @@ function AddPostCtrl($scope, $http, $location) {
 }
 
 function ReadPostCtrl($scope, $http, $routeParams) {
+	console.log("Reading!")
   $http.get('/api/post/' + $routeParams.id).
     success(function(data) {
       $scope.post = data.post;
