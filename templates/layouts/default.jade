@@ -5,7 +5,7 @@ html(ng-app="myApp")
 
 	//- HTML HEADER
 	head
-		include ./documentmodal.jade
+		
 
 		meta(charset="utf-8")
 		meta(name="viewport", content="width=device-width, initial-scale=1.0")
@@ -136,7 +136,7 @@ html(ng-app="myApp")
 			//- Flash messages allow you to display once-off status messages to users, e.g. form
 			//- validation errors, success messages, etc.
 			+flash-messages(messages)
-
+			
 			//- The content block should contain the body of your template's content
 			div(class=" col-sm-offset-3 main" )
 				block content
@@ -146,7 +146,9 @@ html(ng-app="myApp")
 						//div(class=" col-sm-offset-9 main") This should be where the table is
 			//<!-- Including html of document modal -->
 			//<%- partial('documentmodal') %>
-				
+			include ./partials/documentmodal.jade
+			//include '/partials/documentmodal'
+
 		//- FOOTER
 		.container: #footer
 

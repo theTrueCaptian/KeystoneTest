@@ -1,0 +1,40 @@
+<!-- Modal that pops up for adding documents to the collection -->
+div( class="modal fade modal-lg" id="docUploader" tabindex="-1" role="dialog" aria-labelledby="docUploaderLabel" aria-hidden="true" )
+	div( class="modal-dialog modal-lg" )
+		div(class="modal-content")
+			div( class="modal-header")
+				button( type="button" class="close" data-dismiss="modal" aria-hidden="true") 
+				h4( class="modal-title" id="docUploaderLabel") Document Uploader
+			div( class="modal-body")
+				div( class="row ")
+					div( class="col-md-6")
+						div( class="panel panel-default")
+							div( class="panel-heading")
+								h4( class="panel-title") Existing Documents
+							div(  class="panel-body")
+								p Documents:
+								//<%-  documentlist %>
+								//!=partial('partials/documentlist')
+									
+								//<!-- Button that goes to file chooser for uploading into server-->
+								button( id="upload_btn" class="btn btn-primary") Upload Documents
+					div(  class="col-md-6")
+						div(  class="panel panel-default")
+							div(  class="panel-heading")
+								h4( class="panel-title") Documents to Analyze
+							div(  class="panel-body")
+								p Documents:
+								//<%-  collectionlist %>
+								//!=partial('partials/collectionlist')
+//script(type='text/javascript').
+	$('#documentmodel').on('hidden', function () {
+	  //Disable buttons
+	  $("#documentmodel .panel-body").find(".button").button("disable");
+	  alert("disabling buttons");
+	})
+
+	$('#documentmodel').on('show', function () {
+	  //Renable buttons
+	  $("#documentmodel .panel-body").find(".button").button("enable");
+	  alert("renabling buttons");
+	})

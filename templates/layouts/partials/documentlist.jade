@@ -1,0 +1,36 @@
+script( src="js/twitter-dev/bootstrap-tooltip.js")
+script( src="js/twitter-dev/bootstrap-popover.js")
+	
+<!-- Display the files in the document files if they exist -->
+div( class="documentlist_buttons")
+	if files.length
+		each item in files
+			div( class="btn-group btn-group-xs")
+				button( id=item class="btn btn-default btn-xs" type="button")
+					item
+				button( id="example" type="button" class="btn btn-default btn-xs" data-toggle="popover" data-content="Add to collection for analysis!")
+					span( class="glyphicon glyphicon-plus green") 
+				button( type="button" class="btn btn-default btn-xs" data-toggle="popover" data-content="Remove the file")
+					span( class="glyphicon glyphicon-minus red")
+			br
+			br
+	else
+		Upload and add some files into your collection!
+
+//<!--POPOVER DOESNT WORK???-->
+script( type="text/javascript").
+	$('#example').popover({container: 'body'})
+
+
+<!-- Code to respond to file button clicks
+script( type="text/javascript").
+
+	$(function() {
+		$(".documentlist_buttons  button").click( function()
+		{
+			var filename = this.id;
+			alert("click!"+filename);
+			socket.emit("pdfinfo", {filename:filename});
+		}
+		);
+	});

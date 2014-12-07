@@ -1,0 +1,21 @@
+div( class="collectionlist_buttons"   )
+	<!-- Display the files in the document files if they exist -->
+	 if collection.length  	
+		each item in collection
+			div( class="btn-group btn-group-xs")
+				button( id=item class="btn btn-default btn-xs" type="button")
+					item 
+				button( type="button" class="btn btn-default btn-xs")
+					span( class="glyphicon glyphicon-minus red")
+			 
+			br
+			br
+	else
+		p Add some files to your collection for analysis!
+	
+ 
+ script( src="js/pdf.js" )
+ script( src="js/tooltip.js" )
+ script( src="js/textlayerbuilder.js"  )
+ script( src="js/pdfcanvas.js")
+   
