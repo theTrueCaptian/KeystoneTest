@@ -11,11 +11,11 @@ $(function() {
  	}
 	);
  });
-/* 
+ 
 
 //Convert the text into a JSON format given by Schema language
 //Get the text from user and give it color
- 
+ /*
 //Handler for text selection on div where id=pdfContainer (that's where the pdf is located)
 function getSelectionText() {
     var text = "";

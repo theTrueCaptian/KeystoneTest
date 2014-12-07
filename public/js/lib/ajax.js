@@ -2,10 +2,10 @@
 //Client side websocket
 
 //Require the pdf rendering js files
-$.getScript("pdf.js" );
-$.getScript("tooltip.js" );
-$.getScript("textlayerbuilder.js" );
-$.getScript("pdfcanvas.js" );
+$.getScript("/js/lib/pdf/pdf.js" );
+$.getScript("/js/lib/pdf/tooltip.js" );
+$.getScript("/js/lib/pdf/textlayerbuilder.js" );
+$.getScript("/js/lib/pdf/pdfcanvas.js" );
 /*
 //Initializing the connection with the server via websockets 
 socket.on("message",function(message){   
