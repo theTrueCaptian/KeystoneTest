@@ -21,7 +21,6 @@
 var _ = require('underscore'),
 	keystone = require('keystone'),
 	middleware = require('./middleware'),
-	api = require('./api'),
 	importRoutes = keystone.importer(__dirname);
 
 // Common Middleware
@@ -49,28 +48,25 @@ keystone.set('500', function(err, req, res, next) {
 // Import Route Controllers
 var routes = {
 	views: importRoutes('./views')
+	, api: importRoutes('./api')
 };
 
 
 
 // Setup Route Bindings
 exports = module.exports = function(app) {
-	console.log("EXPORTS!!")
+
 	
 	// Views
 	app.get('/', routes.views.index);
+
+	app.get('/api/document/list', keystone.initAPI, routes.api.documents.list);
+	app.all('/api/document/create', keystone.initAPI, routes.api.documents.create);
+	app.get('/api/document/:id', keystone.initAPI, routes.api.documents.get);
+	app.all('/api/document/:id/update', keystone.initAPI, routes.api.documents.update);
+	app.get('/api/document/:id/remove', keystone.initAPI, routes.api.documents.remove);
 	
 	// Routes
-	//app.get('/', api.index);
-	//app.get('/partials/*', routes.views.partial);
-	app.get('/partials/:name', routes.views.partials);
-
-	// JSON API
-	app.get('/api/posts', api.posts);
-	app.get('/api/post/:id', api.post);
-	app.post('/api/post', api.addPost);
-	app.put('/api/post/:id', api.editPost);
-	app.delete('/api/post/:id', api.deletePost);
 	
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);
