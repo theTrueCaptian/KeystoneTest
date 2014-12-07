@@ -15,7 +15,6 @@ $(document).ready(function(){
 	})
 	.done(function( msg ) {
 		//List the files under Documents??how do i do dis
-				console.log("DONE")
 				console.log(msg)
 	});
 });
