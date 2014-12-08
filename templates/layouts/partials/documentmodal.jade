@@ -1,3 +1,5 @@
+link(rel='stylesheet', href='/css/documentmodal.css')
+
 //<!-- Modal that pops up for adding documents to the collection -->
 div(class="modal fade modal-lg" id="docUploader" tabindex="-1" role="dialog" aria-labelledby="docUploaderLabel" aria-hidden="true" )
 	div(class="modal-dialog modal-lg" )
@@ -12,7 +14,6 @@ div(class="modal fade modal-lg" id="docUploader" tabindex="-1" role="dialog" ari
 							div(class="panel-heading")
 								h4(class="panel-title") Existing Documents
 							div( class="panel-body")
-								p Documents:
 								include ./documentlist.jade
 								//<!-- Button that goes to file chooser for uploading into server-->
 								button(id="upload_btn" class="btn btn-primary") Upload Documents
@@ -21,16 +22,5 @@ div(class="modal fade modal-lg" id="docUploader" tabindex="-1" role="dialog" ari
 							div(class="panel-heading")
 								h4(class="panel-title") Documents to Analyze
 							div(class="panel-body")
-								p Documents:
-								//include ./collectionlist.jade
-	script(type='text/javascript').
-		$('#documentmodel').on('hidden', function () {
-		//Disable buttons
-		$("#documentmodel .panel-body").find(".button").button("disable");
-			alert("disabling buttons");
-		})
-		$('#documentmodel').on('show', function () {
-		//Renable buttons
-		$("#documentmodel .panel-body").find(".button").button("enable");
-			alert("renabling buttons");
-		})
+								include ./collectionlist.jade
+								//p Documents:

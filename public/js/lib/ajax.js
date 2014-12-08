@@ -7,6 +7,33 @@ $.getScript("/js/lib/pdf/tooltip.js" );
 $.getScript("/js/lib/pdf/textlayerbuilder.js" );
 $.getScript("/js/lib/pdf/pdfcanvas.js" );
 
+//Requesting data from server once things are loaded such as files
+$(document).ready(function () {
+	$.ajax({
+		type: "GET",
+		url: "/api/document/list"
+	})
+	.done(function (msg) {
+		//List the files under Documents
+		console.log(msg)
+		//files[] is declared in documentlist.jade, which displays the files based on this list. 
+		//files = msg
+
+		var html = ''
+		 msg.documents.forEach(function(item){
+		 html = html //+	"each item in files.documents" 
+		 + " <div class='btn-group btn-group-xs'> "
+		 + " <button id="+item.name+" class='btn btn-default btn-xs' type='button'>"
+		 + item.name
+		 + "<button id='example' type='button' class='btn btn-default btn-xs' data-toggle='popover' data-content='Add to collection for analysis!'>"
+		 + "<span class='glyphicon glyphicon-plus green'>"
+		 + "<button type='button' class='btn btn-default btn-xs' data-toggle='popover' data-content='Remove the file'>"
+		 + "<span class='glyphicon glyphicon-minus red'>"
+		 + "<br><br>"
+		 })
+		 $('.documentlist_buttons').html(html)
+	});
+});
 
 
 function displayEntities(entities){

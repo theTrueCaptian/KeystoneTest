@@ -47,10 +47,9 @@ html(ng-app="myApp")
 		script(src="/js/lib/twitter-dev/bootstrap-tooltip.js")
 		script(src="/js/lib/twitter-dev/bootstrap-popover.js")
 		script(src="/js/lib/docs.min.js")
-
-	
+		script(src="/js/lib/documentmodal.js")
 			
-		//- HEADER
+		//<!- HEADER-->
 		#header: .container
 
 			//- Customise your site's navigation by changing the navLinks Array in ./routes/middleware.js
@@ -70,7 +69,6 @@ html(ng-app="myApp")
 							each link in navLinks
 								li(class=(section == link.key ? 'active' : null)): a(href=link.href)= link.label
 						ul.nav.navbar-nav.navbar-right
-							//ul(class="nav navbar-nav navbar-right")
 							li
 								a(href="#") Profile
 							li
@@ -145,9 +143,7 @@ html(ng-app="myApp")
 					//<%- body %>
 						//div(class=" col-sm-offset-9 main") This should be where the table is
 			//<!-- Including html of document modal -->
-			//<%- partial('documentmodal') %>
 			include ./partials/documentmodal.jade
-			//include '/partials/documentmodal'
 
 		//- FOOTER
 		.container: #footer
