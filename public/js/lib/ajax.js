@@ -9,13 +9,14 @@ $.getScript("/js/lib/pdf/pdfcanvas.js" );
 
 //Requesting data from server once things are loaded such as files
 $(document).ready(function () {
+	
+	//An Ajax request to get a list of documents 
 	$.ajax({
 		type: "GET",
 		url: "/api/document/list"
 	})
 	.done(function (msg) {
 		//List the files under Documents
-		console.log(msg)
 		//msg is used to populate documentlist.jade, which displays the files based on this list. 
 		
 		var html = ''
@@ -23,8 +24,8 @@ $(document).ready(function () {
 		 html = html //+	"each item in files.documents"
 		 + "<script src='/js/lib/documentmodal.js'></script>"		 
 		 + " <div class='btn-group btn-group-xs'> "
-		 + " <button id="+item.file.filename+" class='btn btn-default btn-xs' type='button'>"
-		 + item.name
+		 + "<button id="+item.id+" name="+item.file.filename+" class='btn btn-default btn-xs' type='button'>"
+		 + item.name+": "+item.file.filename
 		 + "<button id='example' type='button' class='btn btn-default btn-xs' data-toggle='popover' data-content='Add to collection for analysis!'>"
 		 + "<span class='glyphicon glyphicon-plus green'>"
 		 + "<button type='button' class='btn btn-default btn-xs' data-toggle='popover' data-content='Remove the file'>"
@@ -34,6 +35,7 @@ $(document).ready(function () {
 		 $('.documentlist_buttons').html(html)
 	});
 
+	//An Ajax request to get a list of Documents in the User's Collection
 	//First check if user is logged in
 	/*$.ajax({
 		type: "GET",

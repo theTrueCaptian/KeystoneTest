@@ -48,7 +48,8 @@ keystone.set('500', function(err, req, res, next) {
 // Import Route Controllers
 var routes = {
 	views: importRoutes('./views')
-	, api: importRoutes('./api')
+, 	api: importRoutes('./api')
+,	pdf: importRoutes('./pdf')
 };
 
 
@@ -65,7 +66,9 @@ exports = module.exports = function(app) {
 	app.get('/api/document/:id', keystone.initAPI, routes.api.documents.get);
 	app.all('/api/document/:id/update', keystone.initAPI, routes.api.documents.update);
 	app.get('/api/document/:id/remove', keystone.initAPI, routes.api.documents.remove);
-	
+
+	app.get('/pdf', keystone.initAPI, routes.pdf.PDFprocessor.process);
+
 	// Routes
 	
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:

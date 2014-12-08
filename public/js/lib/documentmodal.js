@@ -18,9 +18,16 @@ $('#documentmodel').on('show', function () {
 $(function() {
 	$(".documentlist_buttons  button").click( function()
 		{
-			var filename = this.id;
-			alert("click!"+filename);
-			//socket.emit("pdfinfo", {filename:filename});
+			var id = this.id;
+			var filename = this.name
+			//alert("click!"+filename);
+			$.ajax({
+				type: "GET",
+				url: "/pdf",
+				data:{'id':id, 'filename':filename}
+			}).done(function (msg) {
+				console.log(msg)
+			})
 		}
 	);
 });
