@@ -21,18 +21,17 @@ $(document).ready(function () {
 		console.log("List of Documents:")
 		console.log(msg)
 				
-		var html = ''
-		 msg.documents.forEach(function(item){
-		 html = html //+	"each item in files.documents"
-		 + "<script src='/js/lib/documentmodal.js'></script>"		 
-		 + " <div class='btn-group btn-group-xs'> "
-		 + "<button id="+item._id+" name="+item.file.filename+" class='btn btn-default btn-xs' type='button'>"
-		 + item.name+": "+item.file.filename
-		 + "<button id='example' type='button' class='btn btn-default btn-xs' data-toggle='popover' data-content='Add to collection for analysis!'>"
-		 + "<span class='glyphicon glyphicon-plus green'>"
-		 + "<button type='button' class='btn btn-default btn-xs' data-toggle='popover' data-content='Remove the file'>"
-		 + "<span class='glyphicon glyphicon-minus red'>"
-		 + "</div><br><br>"
+		var html = "<script src='/js/lib/documentmodal.js'></script>"
+		msg.documents.forEach(function(item){
+			 html = html //+	"each item in files.documents"
+			 + " <div class='btn-group btn-group-xs'> "
+			 + "<button id="+item._id+" name="+item.file.filename+" class='btn btn-default btn-xs' type='button'>"
+			 + item.name+": "+item.file.filename
+			 + "<button id='example' type='button' class='btn btn-default btn-xs' data-toggle='popover' data-content='Add to collection for analysis!'>"
+			 + "<span class='glyphicon glyphicon-plus green'>"
+			 + "<button type='button' class='btn btn-default btn-xs' data-toggle='popover' data-content='Remove the file'>"
+			 + "<span class='glyphicon glyphicon-minus red'>"
+			 + "</div><br><br>"
 		 })
 		 $('.documentlist_buttons').html(html)
 	});
@@ -99,3 +98,15 @@ function displayEntities(entities){
 	});
 	
 }
+/*
+//<!-- When a filename is clicked on, the client sends a request to load the pdf file into the canvas-->
+$(function() {
+
+	$(document).on('click', '.collectionlist_buttons button',function(e)
+			{
+				e.preventDefault();
+				var filename = this.id;
+				loadPdf("documents/"+filename);
+			}
+	);
+});*/

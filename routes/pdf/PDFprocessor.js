@@ -1,5 +1,9 @@
+/********************************************************************************
+ PDF processor router and processing function
+ ********************************************************************************/
 var keystone  = require('keystone');
-
+var Utils = require('../../Utils/Utils.js')
+var Document = keystone.list('Document');
 /**
  * Process the pdf
  */
@@ -20,13 +24,15 @@ var eventEmitter = new events.EventEmitter();
 exports.process = function(req, res) {
 	var id = req.body.id
 	filename = req.body.filename
-	console.log("A request has been sent to the server to process the following file:"+filename)
+	Utils.logMessage("A request has been sent to the server to process the following file:"+filename)
 	
 	//Retireve the document
 	Document.model.findById(id).exec(function(err, item) {
 
 		if (err) return res.apiError('database error', err);
 		if (!item) return res.apiError('not found');
+
+		Utils.logMessage("Processing the PDF!")
 
 		//Create an event emitter listener
 		eventEmitter.on('processPDF_done', sendDataToClient );
@@ -43,7 +49,28 @@ exports.process = function(req, res) {
 	
 }
 
-//Given json data, it will concatenate all the text and then send it to NER() 
+
+//Parses the PDF  and sends it to extractText() 
+var parsePDF = function ( ){
+	Utils.logMessage("Processing the PDF!")
+
+	var nodeUtil = require("util"),
+			fs = require('fs'),
+			_ = require('underscore'),
+			PDFParser = require("../../node_modules/pdf2json/pdfparser");
+
+	//Using this library we convert PDF to JSON
+	var pdfParser = new PDFParser();
+	//Once the data is ready we want to get the pure text from the json and then NER on it
+	pdfParser.on("pdfParser_dataReady", _.bind(extractText));
+
+	
+	pdfParser.loadPDF(filename);
+
+};
+
+
+//Given json data from parsePDF(), it will concatenate all the text and then send it to NER() 
 var extractText = function(data){
 
 	pdfjson = data.PDFJS;
@@ -60,38 +87,22 @@ var extractText = function(data){
 
 	totaltext = decodeURIComponent(totaltext);
 
-	console.log("Extracting the text done!");
-	console.log("Text:"+totaltext);
+	Utils.logMessage("Extracting the text done!");
+	Utils.logMessage("Text:"+totaltext);
 
 	eventEmitter.emit('parsePDF_done');
 
 	return;
 };
 
-//Parses the PDF  and sends it to extractText() 
-var parsePDF = function ( ){
-	var nodeUtil = require("util"),
-			fs = require('fs'),
-			_ = require('underscore'),
-			PDFParser = require("../../node_modules/pdf2json/pdfparser");
-
-	//Using this library we convert PDF to JSON
-	var pdfParser = new PDFParser();
-	//Once the data is ready we want to get the pure text from the json and then NER on it
-	pdfParser.on("pdfParser_dataReady", _.bind(extractText));
-
-	pdfParser.loadPDF(filename);
-
-};
-
 //NER() is invoked by an event emitter set by process() in order to process PDF asynch
 var NER = function (){
-	console.log("Processing the pdf")
+	Utils.logMessage("Processing the pdf")
 	/*var AlchemyAPI = require('alchemy-api');
 	var alchemy = new AlchemyAPI(APIKey);
 	alchemy.entities(totaltext, {}, function(err, response) {
 		if (err){
-			console.log(err);
+			Utils.logMessage(err);
 			return ;
 		}else{
 
@@ -107,8 +118,8 @@ var NER = function (){
 				entities:entities
 			};
 
-			//console.log(pdfAndEntities);
-			console.log(entities);
+			//Utils.logMessage(pdfAndEntities);
+			Utils.logMessage(entities);
 
 			//Signal the websocket to send the data over to 
 			eventemittersocket.emit('processPDF_done', socket, handler, pdfAndEntities);
@@ -122,11 +133,14 @@ var NER = function (){
 
 //Sends the result of PDF processing to client
 var sendDataToClient = function(jsonMessage){
-	//console.log(jsonMessage);
+	//Utils.logMessage(jsonMessage);
 	//Respond with NER data, PDF data, etc
 	res.apiResponse({
 
 	});
+	
+	//Write the results to the file
+	Utils.writeLogsToFile()
 };
 
 //Put the entities from NER into database

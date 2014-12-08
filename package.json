@@ -9,7 +9,9 @@
     "dotenv": "0.4.0" ,
     "pdf2json": "0.7.1",
     "events":"1.0.x",
-    "underscore":"1.7.x"
+    "underscore":"1.7.x",
+    "lodash":"2.4.x",
+    "js-string-escape":"1.x"
   },
   "engines": {
     "node": ">=0.10.22",
