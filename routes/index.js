@@ -67,7 +67,7 @@ exports = module.exports = function(app) {
 	app.all('/api/document/:id/update', keystone.initAPI, routes.api.documents.update);
 	app.get('/api/document/:id/remove', keystone.initAPI, routes.api.documents.remove);
 
-	app.get('/pdf', keystone.initAPI, routes.pdf.PDFprocessor.process);
+	app.post('/pdf', keystone.initAPI, routes.pdf.PDFprocessor.process);
 
 	// Routes
 	

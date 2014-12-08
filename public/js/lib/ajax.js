@@ -18,13 +18,15 @@ $(document).ready(function () {
 	.done(function (msg) {
 		//List the files under Documents
 		//msg is used to populate documentlist.jade, which displays the files based on this list. 
-		
+		console.log("List of Documents:")
+		console.log(msg)
+				
 		var html = ''
 		 msg.documents.forEach(function(item){
 		 html = html //+	"each item in files.documents"
 		 + "<script src='/js/lib/documentmodal.js'></script>"		 
 		 + " <div class='btn-group btn-group-xs'> "
-		 + "<button id="+item.id+" name="+item.file.filename+" class='btn btn-default btn-xs' type='button'>"
+		 + "<button id="+item._id+" name="+item.file.filename+" class='btn btn-default btn-xs' type='button'>"
 		 + item.name+": "+item.file.filename
 		 + "<button id='example' type='button' class='btn btn-default btn-xs' data-toggle='popover' data-content='Add to collection for analysis!'>"
 		 + "<span class='glyphicon glyphicon-plus green'>"

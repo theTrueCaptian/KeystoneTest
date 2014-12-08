@@ -22,7 +22,7 @@ $(function() {
 			var filename = this.name
 			//alert("click!"+filename);
 			$.ajax({
-				type: "GET",
+				type: "POST",
 				url: "/pdf",
 				data:{'id':id, 'filename':filename}
 			}).done(function (msg) {

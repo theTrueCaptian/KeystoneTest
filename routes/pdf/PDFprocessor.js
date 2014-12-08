@@ -18,8 +18,8 @@ var eventEmitter = new events.EventEmitter();
 //Function that processes the PDF
 //Inputs are from HTTP request and the response is a JSON with NER info and PDF data
 exports.process = function(req, res) {
-	var id = req.params.id
-	filename = req.params.filename
+	var id = req.body.id
+	filename = req.body.filename
 	console.log("A request has been sent to the server to process the following file:"+filename)
 	
 	//Retireve the document
