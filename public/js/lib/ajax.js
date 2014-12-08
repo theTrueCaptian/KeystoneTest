@@ -7,17 +7,7 @@ $.getScript("/js/lib/pdf/tooltip.js" );
 $.getScript("/js/lib/pdf/textlayerbuilder.js" );
 $.getScript("/js/lib/pdf/pdfcanvas.js" );
 
-//Requesting data from server once things are loaded such as files
-$(document).ready(function(){
-	$.ajax({
-		type: "GET",
-		url: "/api/document/list"
-	})
-	.done(function( msg ) {
-		//List the files under Documents??how do i do dis
-				console.log(msg)
-	});
-});
+
 
 function displayEntities(entities){
 	//For each entity in the array, add it to the list of values to display 
