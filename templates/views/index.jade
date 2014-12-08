@@ -3,13 +3,7 @@ extends ../layouts/default
 block body
 	div
 		h2 My Documents
-		ul
-			li
-				a(href='/') Home
-			li
-				a(href='/MaedaHanafi.pdf') Maeda Hanafi pdf
-
-		div(ng-view)
+		include ../../templates/layouts/partials/collectionlist.jade
 		
 		
 	

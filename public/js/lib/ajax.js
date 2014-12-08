@@ -16,23 +16,48 @@ $(document).ready(function () {
 	.done(function (msg) {
 		//List the files under Documents
 		console.log(msg)
-		//files[] is declared in documentlist.jade, which displays the files based on this list. 
-		//files = msg
-
+		//msg is used to populate documentlist.jade, which displays the files based on this list. 
+		
 		var html = ''
 		 msg.documents.forEach(function(item){
-		 html = html //+	"each item in files.documents" 
+		 html = html //+	"each item in files.documents"
+		 + "<script src='/js/lib/documentmodal.js'></script>"		 
 		 + " <div class='btn-group btn-group-xs'> "
-		 + " <button id="+item.name+" class='btn btn-default btn-xs' type='button'>"
+		 + " <button id="+item.file.filename+" class='btn btn-default btn-xs' type='button'>"
 		 + item.name
 		 + "<button id='example' type='button' class='btn btn-default btn-xs' data-toggle='popover' data-content='Add to collection for analysis!'>"
 		 + "<span class='glyphicon glyphicon-plus green'>"
 		 + "<button type='button' class='btn btn-default btn-xs' data-toggle='popover' data-content='Remove the file'>"
 		 + "<span class='glyphicon glyphicon-minus red'>"
-		 + "<br><br>"
+		 + "</div><br><br>"
 		 })
 		 $('.documentlist_buttons').html(html)
 	});
+
+	//First check if user is logged in
+	/*$.ajax({
+		type: "GET",
+		url: "/api/collection/list"
+	})
+	.done(function (msg) {
+		//List the files under Collection
+		console.log(msg)
+		//msg is used to populate collectionlist.jade, which displays the files based on this list. 
+
+		var html = ''
+		msg.documents.forEach(function(item){
+			html = html //+	"each item in files.documents" 
+			+ " <div class='btn-group btn-group-xs'> "
+			+ " <button id="+item.name+" class='btn btn-default btn-xs' type='button'>"
+			+ item.name
+			+ "<button id='example' type='button' class='btn btn-default btn-xs' data-toggle='popover' data-content='Add to collection for analysis!'>"
+			+ "<span class='glyphicon glyphicon-plus green'>"
+			+ "<button type='button' class='btn btn-default btn-xs' data-toggle='popover' data-content='Remove the file'>"
+			+ "<span class='glyphicon glyphicon-minus red'>"
+			+ "<br><br>"
+		})
+		$('.collectionlist_buttons').html(html)
+	});*/
 });
 
 
@@ -66,39 +91,7 @@ function displayEntities(entities){
 			
 			//thenAdd the css
 			$('*[containsStringImLookingFor]').css("border","solid 2px blue");
-			//$('*[containsStringImLookingFor]').tagsinput('refresh');
 		});
 	});
 	
 }
-
-/*
- //Initializing the connection with the server via websockets 
- socket.on("message",function(message){   
-
- console.log("Message from the server arrived on message")
- console.log(message); //converting the data into JS object 
-
- //Request for data on pdf (entities and text)
- //socket.emit("pdfinfo", {});
-
- //Grab the pdf file and parse it
- //var pdfFilePath = message.filename;//"../google-proposal-Azza.pdf";//"../MaedaHanafiResume2014.pdf";
- //loadPdf(pdfFilePath);
- });
-
- //Keep the connection by ping pong the server multiple times 
- socket.on('ping', function(data){
- socket.emit('pong', {beat: 1});
- });
-
- socket.on("pdfinfo",function(data){   	
- console.log("Message from the server arrived on pdfinfo")
- //console.log(data); 
- console.log("File we are processing: "+data.file);
- //displayEntities(data.entities); 
-
- //Display the PDF on canvas, direct to a function in pdfcanvas.js
- loadPdf(data.file);
- });
- */

@@ -1,28 +1,15 @@
 //Ajax.js will retrive the files for this documentlist
-//- var files = {}
 
 script( src="js/lib/twitter-dev/bootstrap-tooltip.js")
 script( src="js/lib/twitter-dev/bootstrap-popover.js")
 
-<!-- Display the files in the document files if they exist -->
+//Display the files in the document files if they exist
 div( class="documentlist_buttons")
-
-//<!--POPOVER DOESNT WORK???-->
+	p Documents:
+//POPOVER DOESNT WORK???
 script( type="text/javascript").
 	$('#example').popover({container: 'body'})
 
 
-<!-- Code to respond to file button clicks-->
-script( type="text/javascript").
 
-	$(function() {
-		$(".documentlist_buttons  button").click( function()
-		{
-			var filename = this.id;
-			alert("click!"+filename);
-			socket.emit("pdfinfo", {filename:filename});
-		}
-		);
-	});
-	
 	

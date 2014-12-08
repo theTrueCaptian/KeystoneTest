@@ -49,7 +49,7 @@ html(ng-app="myApp")
 		script(src="/js/lib/docs.min.js")
 		script(src="/js/lib/documentmodal.js")
 			
-		//<!- HEADER-->
+		//<!- HEADER 
 		#header: .container
 
 			//- Customise your site's navigation by changing the navLinks Array in ./routes/middleware.js
@@ -96,9 +96,10 @@ html(ng-app="myApp")
 										a(data-toggle="collapse" data-parent="#accordion" href="#Documents") Documents in Collection
 								div(id="Documents" class="panel-collapse collapse in")
 									div(class="panel-body")
-										<!-- Display the files through the partial collectionlist.ejs -->
+										// Display the files through the partial collectionlist.ejs  
 										//<%-  collectionlist %>
-										<!-- Button trigger modal for document uploader-->
+										include ./partials/collectionlist.jade
+										// Button trigger modal for document uploader 
 										button(class="btn btn-primary" data-toggle="modal" data-target="#docUploader" ) Add More Documents
 						li
 							div(class="panel panel-default")
@@ -116,7 +117,7 @@ html(ng-app="myApp")
 									div(class="panel-body")
 										div(id="entities-title") Entities
 										div(id="entities")
-											<!-- Display the entities and labels if they exist -->
+											// Display the entities and labels if they exist  
 											//<% if (labels.length) { %>
 											//<% labels.forEach(function(item){ %>
 											//<% for(var columnName in item) {%>
@@ -142,7 +143,7 @@ html(ng-app="myApp")
 				block body
 					//<%- body %>
 						//div(class=" col-sm-offset-9 main") This should be where the table is
-			//<!-- Including html of document modal -->
+			// Including html of document modal  
 			include ./partials/documentmodal.jade
 
 		//- FOOTER
