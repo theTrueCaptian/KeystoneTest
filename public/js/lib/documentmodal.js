@@ -27,7 +27,10 @@ $(function() {
 				data:{'id':id, 'filename':filename}
 			}).done(function (msg) {
 				console.log(msg)
+				//Given to pdfCanvas.js, a path to the client's storage of the PDF
+				loadPdf(msg.filename);
 			})
+
 		}
 	);
 });
