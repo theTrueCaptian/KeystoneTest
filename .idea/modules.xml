@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/KeystoneTest.iml" filepath="$PROJECT_DIR$/.idea/KeystoneTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/TextureNER.iml" filepath="$PROJECT_DIR$/.idea/TextureNER.iml" />
     </modules>
   </component>
 </project>

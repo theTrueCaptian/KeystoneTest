@@ -1,0 +1,29 @@
+Log book: Things to do and things that are done
+
+- Understand AngularJS and create skeleton
+- Combine NER, PDF, Viz, with FlashExtract
+	NVM - Integrate the interface with the AngularJS (Texture3/TextureInterface)
+		DONE- Document management system
+			DONE - Setting up Keystone
+			DONE - Setting up Documents in Database
+			NVM- Get Routes to work for AngularJS
+				- https://github.com/keystonejs/keystone/issues/388
+				- https://gist.github.com/JedWatson/9741171
+			DONE- Connecting to the application
+			DONE - Merge TextureNER with KeystoneTest
+		DONE - Interface, change the "looks"/css	
+	- Integrate the PDF stuff (Texture2 on localhost:8000/index2)
+		DONE - Respond to user clicks on a button in the document list and display the PDF
+		- Create logs
+		DONE - Make the PDF processor and NER process synchronously using async module
+		DONE - Display the PDF
+		-Correc the CSS
+	- Integrate Arabic Parser (TextureVisualization /displayhadith and /displayparser)
+	- Make sure the latest code from FlashExtract repo is used
+- Dictionary code integration and database (Texture2 or Texture Viz)
+- Setting up users and profiles along with collections table
+
+FlashExtract:
+-Creating forks in Nodejs:
+	process = require('child_process');
+	child_process.exec(command, [options], callback)
