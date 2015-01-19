@@ -17,9 +17,11 @@ Log book: Things to do and things that are done
 		- Create logs
 		DONE - Make the PDF processor and NER process synchronously using async module
 		DONE - Display the PDF
-		-Correc the CSS
+		DONE-Correct the CSS
+		-Display entities
 	- Integrate Arabic Parser (TextureVisualization /displayhadith and /displayparser)
-	- Make sure the latest code from FlashExtract repo is used
+	- Integrate FE interface. Make sure the latest code from FlashExtract repo is used
+		-Allow user to call FE and make highlights
 - Dictionary code integration and database (Texture2 or Texture Viz)
 - Setting up users and profiles along with collections table
 
@@ -27,3 +29,7 @@ FlashExtract:
 -Creating forks in Nodejs:
 	process = require('child_process');
 	child_process.exec(command, [options], callback)
+	
+Note: 
+Run Mongod before running the application through command prompt in admin mode: 
+C:\>mongod.exe --dbpath \MongoDB\data\db\

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/TextureNER.iml" filepath="$PROJECT_DIR$/.idea/TextureNER.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/TextureAll.iml" filepath="$PROJECT_DIR$/.idea/TextureAll.iml" />
     </modules>
   </component>
 </project>

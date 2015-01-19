@@ -46,7 +46,7 @@ html(ng-app="myApp")
 		script(src="/js/lib/twitter-dev/bootstrap-tooltip.js")
 		script(src="/js/lib/twitter-dev/bootstrap-popover.js")
 		script(src="/js/lib/docs.min.js")
-		//script(src="/js/lib/documentmodal.js")
+		//script(src="/js/lib/displaydocument.js")
 			
 		//<!- HEADER 
 		#header: .container
@@ -85,7 +85,7 @@ html(ng-app="myApp")
 		#body
 
 			//div(class="row")
-			div(class="col-sm-3 col-md-2 sidebar")
+			div(class="col-sm-3 col-md-3 sidebar")
 				ul(class="nav nav-sidebar")
 					div(class="panel-group" id="accordion")
 						li
@@ -114,16 +114,18 @@ html(ng-app="myApp")
 										a(data-toggle="collapse" data-parent="#accordion" href="#EntitiesAndLabels") Entities and Labels
 								div(id="EntitiesAndLabels" class="panel-collapse collapse")
 									div(class="panel-body")
-										div(id="entities-title") Entities
+										div(id="entities-title") 
 										div(id="entities")
-											// Display the entities and labels if they exist  
-											//<% if (labels.length) { %>
-											//<% labels.forEach(function(item){ %>
-											//<% for(var columnName in item) {%>
-											//<%= item[columnName] %>
-											//<% } %>
-											//<% }) %>
-											//<% } %>
+											// Display the entities and labels if they exist
+						li
+							div(class="panel panel-default")
+								div(class="panel-heading")
+									h4(class="panel-title")
+										a(data-toggle="collapse" data-parent="#accordion" href="#FEPanel") Data Extraction
+								div(id="FEPanel" class="panel-collapse collapse in")
+									div(class="panel-body")
+										//Display FE interface
+										
 			//- NOTE:
 			//- There is no .container wrapping class around body blocks to allow more flexibility in design.
 			//- Remember to include it in your templates when you override the intro and content blocks!
@@ -137,6 +139,7 @@ html(ng-app="myApp")
 			
 			//- The content block should contain the body of your template's content
 			div(class=" col-sm-offset-3 main" )
+			
 				block content
 
 				block body
