@@ -18,7 +18,8 @@ Log book: Things to do and things that are done
 		DONE - Make the PDF processor and NER process synchronously using async module
 		DONE - Display the PDF
 		DONE-Correct the CSS
-		-Display entities
+		DONE-Display entities
+		-Highlight entities
 	- Integrate Arabic Parser (TextureVisualization /displayhadith and /displayparser)
 	- Integrate FE interface. Make sure the latest code from FlashExtract repo is used
 		-Allow user to call FE and make highlights

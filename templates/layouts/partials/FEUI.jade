@@ -1,0 +1,27 @@
+//
+	Created by Maeda on 1/19/2015.
+	Displays FE toolkits
+
+script(src="/js/lib/FEUI/FEUI.js")
+script( src="http://code.jquery.com/jquery-1.10.2.js")
+script( src="http://code.jquery.com/ui/1.11.1/jquery-ui.js")
+script( type="text/javascript" src="http://d3js.org/d3.v3.min.js")
+//script( type="text/javascript" src="js/lib/FEUI/textrange/jquery-textrange.js")
+//script( type="text/javascript" src="js/lib/FEUI/highlight/jquery.highlighttextarea.js")
+//script( type="text/javascript" src="js/lib/FEUI/extract/extract.js")
+script( type="text/javascript" src="js/lib/FEUI/lodash.min.js")
+//<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+//<link href="texture.css" rel="stylesheet" type="text/css">
+//<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+//<link href="js/highlight/jquery.highlighttextarea.css" rel="stylesheet" type="text/css">
+
+div(id="control_panel")
+	p To extract structured data from the text document, highlight similar text elements with the same color. Click extract and watch us learn the structure. If we get it wrong, you can highlight more  examples of what you want. Have fun! </p>
+	div( id="color_panel")
+		h3 Highlight Brushes
+
+div( style="padding:10px; margin-bottom: 10px; text-align:center" id="execute_learn")
+	a( type="button" class="btn btn-default") Learn Structure & Extract
+
+//a( type="button" class="btn btn-default") Show Data Extraction Code
+

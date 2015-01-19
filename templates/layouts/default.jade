@@ -104,6 +104,16 @@ html(ng-app="myApp")
 							div(class="panel panel-default")
 								div(class="panel-heading")
 									h4(class="panel-title")
+										a(data-toggle="collapse" data-parent="#accordion" href="#FEPanel") Data Extraction
+								div(id="FEPanel" class="panel-collapse collapse in")
+									div(class="panel-body")
+										//Display FE interface
+										// Including html of FE interface
+										include ./partials/FEUI.jade
+						li
+							div(class="panel panel-default")
+								div(class="panel-heading")
+									h4(class="panel-title")
 										a(data-toggle="collapse" data-parent="#accordion" href="#Annotations") Annotations
 								div(id="Annotations" class="panel-collapse collapse")
 									div(class="panel-body")
@@ -117,14 +127,7 @@ html(ng-app="myApp")
 										div(id="entities-title") 
 										div(id="entities")
 											// Display the entities and labels if they exist
-						li
-							div(class="panel panel-default")
-								div(class="panel-heading")
-									h4(class="panel-title")
-										a(data-toggle="collapse" data-parent="#accordion" href="#FEPanel") Data Extraction
-								div(id="FEPanel" class="panel-collapse collapse in")
-									div(class="panel-body")
-										//Display FE interface
+						
 										
 			//- NOTE:
 			//- There is no .container wrapping class around body blocks to allow more flexibility in design.
