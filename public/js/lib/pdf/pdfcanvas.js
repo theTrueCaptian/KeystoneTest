@@ -25,9 +25,16 @@
 //http://vivin.net/pub/pdfjs/TestDocument.pdf
 
 var scale = 1.5; //Set this to whatever you want. This is basically the "zoom" factor for the PDF.
-
+//Required to highlight entities on the PDF
+$.getScript("/js/lib/pdf/hilitor.js" );
+var myHilitor;  
+var GLentities;
  
-function loadPdf(pdfData) {
+function loadPdf(pdfData, entities) {
+	GLentities = entities;
+	myHilitor = new Hilitor("pdfContainer");
+	setHighlight();
+
 	console.log("Loading pdf "+pdfData);
 	
 	PDFJS.disableWorker = true; //Not using web workers. Not disabling results in an error. This line is
@@ -38,6 +45,17 @@ function loadPdf(pdfData) {
 	
 	var pdf = PDFJS.getDocument(pdfData);
 	pdf.then(renderPdf);
+
+}
+
+var count = 0;
+function setHighlight(){
+	if(count<20) {
+		//if($("#pdfContainer").is(':empty') ) {
+ 		setTimeout(setHighlight, 100);
+		highlightEntities(GLentities);
+ 		count++;
+	}
 }
 
 function renderPdf(pdf) {
@@ -45,6 +63,9 @@ function renderPdf(pdf) {
 	for (i = 1; i <= total; i++){
 		pdf.getPage(i).then(renderPage);
 	}
+
+	
+	
 }
 
 function renderPage(page) {
@@ -100,8 +121,8 @@ function renderPage(page) {
 		.css("height", viewport.height + "px")
 		.css("width", viewport.width + "px")
 		.offset({
-			top: (canvas.height * (page.pageNumber-1)+5)
-			//left: canvasOffset.left
+			top: (canvas.height * (page.pageNumber-1)/*+5*/),
+			left: canvasOffset.left
 			//top:  $canvas.top,
 			//left:  $canvas.left
 		});
@@ -146,7 +167,21 @@ function renderPage(page) {
 
 		 
 		}
+
+		
+		
 	});
+	
 }
+
+function highlightEntities(entities){
+
+	var concat = ""
+	entities.forEach(function(entry){
+		concat = concat +" "+ entry.text;
+	})
+	myHilitor.apply(concat);
  
+}
+
 

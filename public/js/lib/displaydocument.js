@@ -1,7 +1,12 @@
 /**
  * Javascript for the documentmodal.jade, which lists the documents that are not in the 
  * User's collection 
+ * 
+ * Deals with displaying the document and displaying and highlighting entities
  */
+
+
+
 //Disables and renable with the documentmodal buttons
 $('#documentmodel').on('hidden', function () {
 	//Disable buttons
@@ -28,10 +33,12 @@ $(function() {
 			}).done(function (msg) {
 				console.log(msg)
 				//Given to pdfCanvas.js, a path to the client's storage of the PDF
-				loadPdf(msg.filename);
+				loadPdf(msg.filename, msg.data.entities);
 
 				//Display entities
 				displayEntities(msg.data.entities)
+				
+				//highlightEntities(entities)
 			})
 
 		}
@@ -49,15 +56,6 @@ function displayEntities(entities){
 		$('#entityTable').append("<tr><td>\""+entry.text+"\"</td><td>\""+entry.type+"\"</td></tr>");
 	});
 	$('#EntitiesAndLabels').collapse('show');
-
-	/*$('#entities').append("<div ><p>Entities<p><select id=\"entityList\" multiple data-role=\"tagsinput\">"+"</select></div>");
-	entities.forEach(function(entry) {
-		//$('#entityList').append("<option value=\""+entry.text+"\">\""+entry.text+"\"</option>");
-	});
-	console.log(entities);
-
-	//Referesh to make the tagsinput work
-	//$('#entities').tagsinput('refresh');
 
 	//Find the entities on the pdf and place popovers over them	 
 	/*$(function() {
@@ -80,4 +78,4 @@ function displayEntities(entities){
 	});*/
 
 }
-	
+

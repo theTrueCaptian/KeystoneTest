@@ -7,6 +7,7 @@ $.getScript("/js/lib/pdf/tooltip.js" );
 $.getScript("/js/lib/pdf/textlayerbuilder.js" );
 $.getScript("/js/lib/pdf/pdfcanvas.js" );
 
+
 //Requesting data from server once things are loaded such as files
 $(document).ready(function () {
 	
