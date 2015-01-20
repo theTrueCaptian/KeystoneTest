@@ -1,6 +1,7 @@
 function Hilitor(id, tag) {
 	var targetNode = document.getElementById(id) || document.body;
 	var hiliteTag = tag || "A";//"EM";
+	var hilitename = "highlight";
 	var skipTags = new RegExp("^(?:" + hiliteTag + "|SCRIPT|FORM|SPAN)$");
 	var colors = ["#ff6", "#a0ffff", "#9f9", "#f99", "#f6f"];
 	var wordColor = [];
@@ -52,13 +53,18 @@ function Hilitor(id, tag) {
 					wordColor[regs[0].toLowerCase()] = colors[colorIdx++ % colors.length];
 				}
 				var match = document.createElement(hiliteTag);//document.createElement("BUTTON");//
+				match.className = hilitename;
 				match.appendChild(document.createTextNode(regs[0]));
-				match.style.backgroundColor = wordColor[regs[0].toLowerCase()];
+
 				match.style.fontStyle = "inherit";
-				match.style.color = "#000";
-				match.style.padding = "#1px";
 				match.setAttribute("role","button");
-				match.setAttribute("class","label");
+				//match.setAttribute("class","label");
+
+				//match.style.fontSize = "100%";
+				match.style.backgroundColor = wordColor[regs[0].toLowerCase()];
+				match.style.color = "#000";
+				match.style.padding = "1px";
+				match.style.borderRadius = ".25em";
 
 				var after = node.splitText(regs.index);
 				after.nodeValue = after.nodeValue.substring(regs[0].length);
@@ -68,7 +74,7 @@ function Hilitor(id, tag) {
 		;
 	};
 	this.remove = function () {
-		var arr = document.getElementsByTagName(hiliteTag);
+		var arr =  document.getElementsByClassName(hilitename);//document.getElementsByTagName(hiliteTag);
 		while (arr.length && (el = arr[0])) {
 			var parent = el.parentNode;
 			parent.replaceChild(el.firstChild, el);
